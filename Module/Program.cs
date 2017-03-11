@@ -37,6 +37,8 @@ namespace Module
                 AddGrades(student2, new List<int> { 95, 90, 93, 85, 89 });
                 AddGrades(student3, new List<int> { 69, 75, 80, 71, 79 });
 
+                student1.ChangeLastGrade(100);
+
                 Degree degree = new Module.Degree("Bachelor of Science", 30);
                 degree.AddCourse(course);
 
@@ -44,11 +46,14 @@ namespace Module
 
                 Console.WriteLine("The {0} program contains the {1} degree.", uProgram.ProgramName, degree.DegreeName);
                 Console.WriteLine("The {0} degree contains the course {1}.", degree.DegreeName, course.CourseName);
-                Console.WriteLine("The {0} course contains {1} students.", course.CourseName, Student.EnrolledStudents);
+                Console.WriteLine("The school has {0} students enrolled.", Student.EnrolledStudents);
 
                 Console.WriteLine("\n\nCourse {0} has the following students enrolled:", course.CourseName);
                 course.ListStudents();
 
+                Console.WriteLine("\nUpdate student grade.");
+                student1.ChangeGrade(10, 1);
+                course.ListStudents();
             }
             catch (NotImplementedException e)
             {

@@ -56,13 +56,7 @@ namespace Module
         /// </summary>
         public int EnrolledStudentCount {
             get {
-                int count = 0;
-                foreach(var student in students)
-                {
-                    if (student != null)
-                        count++;
-                }
-                return count;
+                return students.Count;
             }
         }
 
@@ -71,9 +65,16 @@ namespace Module
         /// </summary>
         public void ListStudents()
         {
-            foreach(Student student in students)
+            var sortedStudents = students.Cast<Student>().OrderBy(s => s.LastName);
+            foreach(Student student in sortedStudents)
             {
-                Console.WriteLine("{0} {1}", student.FirstName, student.LastName);
+                Console.Write("{0} {1} grades:", student.FirstName, student.LastName);
+
+                foreach (var grade in student.GetGrades())
+                {
+                    Console.Write(" {0}", grade);
+                }
+                Console.WriteLine();
             }
         }
     }
